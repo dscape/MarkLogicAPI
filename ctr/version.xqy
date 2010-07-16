@@ -24,13 +24,10 @@ import module
   namespace mvc = "http://ns.dscape.org/2010/dxc/mvc"
   at "/lib/dxc/mvc/mvc.xqy";
 
-declare function local:get() {
-  "foo" } ;
+declare function local:get() { "foo" } ;
 
-declare function local:head() {
-  local:get() } ;
+declare function local:head() { local:get() } ;
 
 try {
   xdmp:apply( xdmp:function( xs:QName( mvc:function() ) ) )
-} catch ( $e ) { (: should be a 404 :)
-  mvc:render-error( $e ) }
+} catch ( $e ) {  mvc:raise-404( $e ) }
