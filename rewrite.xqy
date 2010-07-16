@@ -1,17 +1,4 @@
 (:
-xquery version "1.0-ml";
-
-declare function local:root() {
-  fn:concat('/src/root.xqy?_m=', xdmp:get-request-method()) } ;
-
-let $path := xdmp:get-request-path()
-return 
-  if($path = "/")
-    then local:root()
-  else
-    "defs.xqy" :)
-
-(:
  : Routing logic for MarkLogic API
  :
  : Copyright (c) 2010 Nuno Job [nunojob.com]. All Rights Reserved.
