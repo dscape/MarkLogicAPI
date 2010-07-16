@@ -32,4 +32,5 @@ declare function local:head() {
 
 try {
   xdmp:apply( xdmp:function( xs:QName( mvc:function() ) ) )
-} catch ( $e ) { mvc:render-error( $e ) }
+} catch ( $e ) { (: should be a 404 :)
+  mvc:render-error( $e ) }
