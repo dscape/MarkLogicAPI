@@ -27,6 +27,5 @@ import module
   at "/lib/dxc/mvc/routes.xqy" ;
 
 declare variable $routes-cfg := xdmp:invoke("cfg/routes.xml") ;
-
 r:selected-route( $routes-cfg )
 
