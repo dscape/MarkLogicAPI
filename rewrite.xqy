@@ -28,6 +28,5 @@ import module
 
 declare variable $routes-cfg := xdmp:invoke("cfg/routes.xml") ;
 
-let $_ := xdmp:log( r:selected-route( $routes-cfg ))
-return r:selected-route( $routes-cfg )
+r:selected-route( $routes-cfg )
 
