@@ -23,8 +23,11 @@ xquery version "1.0-ml";
 declare namespace s = "http://www.w3.org/2009/xpath-functions/analyze-string" ;
 
 import module 
-  namespace r = "http://ns.dscape.org/2010/dxc/http/routes" 
-  at "/lib/dxc/http/routes.xqy" ;
+  namespace r = "http://ns.dscape.org/2010/dxc/mvc/routes" 
+  at "/lib/dxc/mvc/routes.xqy" ;
 
-let $routes-cfg := xdmp:invoke("cfg/routes.xml")
-  return r:selected-route( $routes-cfg )
+declare variable $routes-cfg := xdmp:invoke("cfg/routes.xml") ;
+
+let $_ := xdmp:log( r:selected-route( $routes-cfg ))
+return r:selected-route( $routes-cfg )
+

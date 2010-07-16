@@ -21,19 +21,15 @@
 xquery version "1.0-ml";
 
 import module
-  namespace h = "http://ns.dscape.org/2010/dxc/http"
-  at "/lib/dxc/http/http.xqy";
+  namespace mvc = "http://ns.dscape.org/2010/dxc/mvc"
+  at "/lib/dxc/mvc/mvc.xqy";
 
 declare function local:get() {
-  "foo"
-} ;
+  "foo" } ;
 
 declare function local:head() {
   local:get() } ;
 
 try {
-  let $action := ( h:get-input('function'), h:get-input('action') ) [ . != "" ] [1]
-  let $_ := xdmp:log($action)
-    return xdmp:apply( xdmp:function( xs:QName(
-             fn:concat( "local:", $action ) ) ) )
-} catch ( $e ) { $e }
+  xdmp:apply( xdmp:function( xs:QName( mvc:function() ) ) )
+} catch ( $e ) { mvc:render-error( $e ) }
