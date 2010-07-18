@@ -24,9 +24,19 @@ import module
   namespace mvc = "http://ns.dscape.org/2010/dxc/mvc"
   at "/lib/dxc/mvc/mvc.xqy";
 
-declare function local:get() { xdmp:quote(mvc:tree-from-request-fields()) } ;
+declare function local:version() {
+  xdmp:add-response-header('Cache-Control', 'must-revalidate'),
+  mvc:render( 'server', 'get', xdmp:version() )  } ;
 
-declare function local:head() { local:get() } ;
+declare function local:ping() {
+  xdmp:add-response-header('Cache-Control', 'must-revalidate'), () } ;
 
-try          { xdmp:apply( xdmp:function( xs:QName( mvc:function() ) ) ) } 
-catch ( $e ) {  mvc:raise-404( $e ) }
+declare function local:uuids() {
+  (: work in progress :)
+  xdmp:add-response-header('Cache-Control', 'must-revalidate'),
+  fn:concat(
+    fn:substring(xdmp:md5(fn:string(fn:current-date())),1,16),
+    fn:substring(xdmp:md5(fn:string(xdmp:request-timestamp())),1,16 ) ) } ;
+
+try          { xdmp:apply( mvc:function() ) } 
+catch ( $e ) { mvc:raise-404( $e ) }
