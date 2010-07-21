@@ -15,7 +15,12 @@ declare function local:ping() {
   xdmp:add-response-header('Cache-Control', 'must-revalidate'), () } ;
 
 declare function local:uuids() {
-  xdmp:add-response-header('Cache-Control', 'must-revalidate'), server:uuid()};
+  xdmp:add-response-header('Cache-Control', 'must-revalidate, no-cache'), 
+  server:uuid()};
+
+declare function local:all_dbs() {
+  xdmp:add-response-header('Cache-Control', 'must-revalidate'),
+  server:databases() } ;
 
 try          { xdmp:apply( mvc:function() ) } 
 catch ( $e ) { mvc:raise-404( $e ) }
