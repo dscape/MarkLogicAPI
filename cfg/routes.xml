@@ -3,6 +3,7 @@
   <head path="/"> server#ping </head>
   <match path="/_uuids"> <to> server#uuids </to> </match>
   <match path="/_all_dbs"> <to> server#all_dbs </to> </match>
+  <match path="/_all_forests"> <to> server#all_forests </to> </match>
   <match path="/_download">
     <redirect-to> http://developer.marklogic.com/products </redirect-to>
   </match>
