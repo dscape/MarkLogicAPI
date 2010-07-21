@@ -1,8 +1,6 @@
 <routes xmlns="http://ns.dscape.org/2010/routes">
   <root> server#version </root>
   <head path="/"> server#ping </head>
-  (: just some test while developing dxc in paralel :)
-  (: feel free to delete :)
   <match path="/_uuids"> <to> server#uuids </to> </match>
   <match path="/_download">
     <redirect-to> http://developer.marklogic.com/products </redirect-to>
