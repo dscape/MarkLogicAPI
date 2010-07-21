@@ -16,8 +16,6 @@ read && clear
 echo "curl -vX HEAD localhost:port [:port => 6984,5984]"
 echo "-------------------------------------------------"
 curl -vX HEAD localhost:6984
-echo
-curl -vX HEAD localhost:5984 &
 read && clear
 echo "curl -vX GET localhost:port/ [:port => 6984,5984]"
 echo "-------------------------------------------------"
@@ -28,8 +26,6 @@ read && clear
 echo "curl -vX HEAD localhost:port/ [:port => 6984,5984]"
 echo "--------------------------------------------------"
 curl -vX HEAD localhost:6984/
-echo
-curl -vX HEAD localhost:5984/ &
 read && clear 
 echo "curl -vX GET localhost:port/_uuids [:port => 6984,5984]"
 echo "----------------------------------------------------------"
