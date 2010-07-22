@@ -8,19 +8,22 @@ import module
   at "../mdl/server.xqy" ;
 
 declare function local:version() {
-  xdmp:add-response-header('Cache-Control', 'must-revalidate'),
+  mvc:must-revalidate-cache(),
   mvc:render( 'server', 'version', server:version() )  } ;
 
-declare function local:ping() {
-  xdmp:add-response-header('Cache-Control', 'must-revalidate'), () } ;
+declare function local:ping() { mvc:must-revalidate-cache(), () } ;
 
 declare function local:uuids() {
-  xdmp:add-response-header('Cache-Control', 'must-revalidate, no-cache'), 
-  server:uuid()};
+  let $c := mvc:get-field( "count", "1" )
+  return (mvc:no-cache(), mvc:render( 'server', 'uuids', server:uuids($c) )) } ;
 
 declare function local:all_dbs() {
-  xdmp:add-response-header('Cache-Control', 'must-revalidate'),
+  mvc:must-revalidate-cache(),
   mvc:render( 'server', 'all_dbs', server:databases() ) } ;
 
+declare function local:all_forests() {
+  mvc:must-revalidate-cache(),
+  mvc:render( 'server', 'all_forests', server:forests() ) } ;
+
 try          { xdmp:apply( mvc:function() ) } 
-catch ( $e ) { mvc:raise-404( $e ) }
+catch ( $e ) { mvc:raise-http-error( $e ) }
