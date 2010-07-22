@@ -9,7 +9,7 @@ import module
 
 declare function local:version() {
   xdmp:add-response-header('Cache-Control', 'must-revalidate'),
-  mvc:render( 'server', 'get', server:version() )  } ;
+  mvc:render( 'server', 'version', server:version() )  } ;
 
 declare function local:ping() {
   xdmp:add-response-header('Cache-Control', 'must-revalidate'), () } ;
@@ -20,7 +20,7 @@ declare function local:uuids() {
 
 declare function local:all_dbs() {
   xdmp:add-response-header('Cache-Control', 'must-revalidate'),
-  server:databases() } ;
+  mvc:render( 'server', 'all_dbs', server:databases() ) } ;
 
 try          { xdmp:apply( mvc:function() ) } 
 catch ( $e ) { mvc:raise-404( $e ) }
