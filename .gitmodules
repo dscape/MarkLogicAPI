@@ -1,3 +1,3 @@
 [submodule "lib/dxc"]
 	path = lib/dxc
-	url = git://github.com/dscape/dxc.git
+	url = git@github.com:dscape/dxc.git
