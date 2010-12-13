@@ -8,5 +8,5 @@
     <redirect-to> http://developer.marklogic.com/products </redirect-to>
   </match>
   <resource name=":database"/>
-  <match path="/:controller/:action/:id"/>
+  <!-- <match path="/:controller/:action/:id"/> -->
 </routes>
