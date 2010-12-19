@@ -6,6 +6,9 @@ import module
 import module
   namespace server = "model:server"
   at "../mdl/server.xqy" ;
+import module
+  namespace db = "model:database"
+  at "../mdl/database.xqy" ;
 
 declare function local:version() {
   mvc:must-revalidate-cache(),
@@ -19,7 +22,7 @@ declare function local:uuids() {
 
 declare function local:all_dbs() {
   mvc:must-revalidate-cache(),
-  mvc:render( 'server', 'all_dbs', server:databases() ) } ;
+  mvc:render( 'server', 'all_dbs', db:list() ) } ;
 
 declare function local:all_forests() {
   mvc:must-revalidate-cache(),

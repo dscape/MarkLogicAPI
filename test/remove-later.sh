@@ -7,6 +7,30 @@ curl localhost:6984
 echo
 curl localhost:5984
 read && clear
+echo "curl -vX GET localhost:port/_all_dbs [:port => 6984,5984]"
+echo "----------------------------------------------------------"
+curl -vX GET localhost:6984/_all_dbs
+echo
+curl -vX GET localhost:5984/_all_dbs
+read && clear
+echo "curl -vX PUT localhost:port/Fab [:port => 6984,5984]"
+echo "----------------------------------------------------"
+curl -vX PUT localhost:6984/TestShouldFail -d ""
+echo
+curl -vX PUT localhost:5984/TestShouldFail
+read && clear
+echo "curl -vX PUT localhost:port/testing [:port => 6984,5984]"
+echo "--------------------------------------------------------"
+curl -vX PUT localhost:6984/testing -d ""
+echo
+curl -vX PUT localhost:5984/testing
+read && clear
+echo "curl -vX PUT localhost:port/testing [:port => 6984,5984]"
+echo "--------------------------------------------------------"
+curl -vX PUT localhost:6984/testing -d ""
+echo
+curl -vX PUT localhost:5984/testing
+read && clear
 echo "curl -vX GET localhost:port [:port => 6984,5984]"
 echo "------------------------------------------------"
 curl -vX GET localhost:6984
@@ -26,12 +50,6 @@ read && clear
 echo "curl -vX HEAD localhost:port/ [:port => 6984,5984]"
 echo "--------------------------------------------------"
 curl -vX HEAD localhost:6984/
-read && clear 
-echo "curl -vX GET localhost:port/_all_dbs [:port => 6984,5984]"
-echo "----------------------------------------------------------"
-curl -vX GET localhost:6984/_all_dbs
-echo
-curl -vX GET localhost:5984/_all_dbs
 read && clear 
 echo "curl -vX GET localhost:port/_uuids [:port => 6984,5984]"
 echo "----------------------------------------------------------"
