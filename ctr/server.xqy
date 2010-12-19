@@ -29,4 +29,4 @@ declare function local:all_forests() {
   mvc:render( 'server', 'all_forests', server:forests() ) } ;
 
 try          { xdmp:apply( mvc:function() ) } 
-catch ( $e ) { mvc:raise-http-error( $e ) }
+catch ( $e ) { mvc:raise-error-from-exception( $e ) }
