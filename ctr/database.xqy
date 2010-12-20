@@ -35,7 +35,10 @@ declare function local:delete() {
   let $db := mvc:get-input( 'database' )
   return ( mvc:must-revalidate-cache(),
     if ( db:exists ( $db ) )
-    then "delete"
+    then let $db := try { db:delete( $db ) }
+                    catch ( $e ) { mvc:raise-error-from-exception( $e, 
+'The database could not be deleted, an logged exception ocurred.', 'db_delete_exc' ) }
+         return mvc:render( 'database', 'put' )
     else mvc:raise-error( 'Database does not exist.', 404, 'Not Found', 'not_found' ) ) } ;
 
 try          { xdmp:apply( mvc:function() ) } 
