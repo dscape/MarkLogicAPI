@@ -2,3 +2,5 @@ finish db
 refactor error code
 refactor get field code
 add all data types
+errors only support xml or html, must be improved further on
+  need error handler as advanced as routing
