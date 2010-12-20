@@ -39,9 +39,10 @@ class Tests
     output = `#{file} #{@options[:db]}`
     expected_output = File.open(out_file).readlines.join
 
-    unless output == expected_output
-      depth.times { print "  " }
-      puts "NOK!"
+    if output == expected_output
+      print " [\e[32mOK\e[0m]" 
+    else
+      print " [\e[31mFAILED\e[0m]" 
 
       File.open(aux_file, 'w') { |file| file.write output }
       diff = `diff #{aux_file} #{out_file}`
@@ -49,11 +50,13 @@ class Tests
 
       File.open(log_file, 'w') { |file| file.write diff }
     end
+    puts
   end
 
   def self.puts_idented_file depth, file, symbol
     depth.times { print "  " }
-    puts "#{symbol} #{file}"
+    print "#{symbol} #{file}"
+    puts if symbol == '.'
   end
 end
 
