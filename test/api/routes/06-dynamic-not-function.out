@@ -1,0 +1,6 @@
+< HTTP/1.1 404 Not Found
+< Content-type: text/plain; charset=UTF-8
+< Server: MarkLogic
+< Content-Length: 54
+< Connection: close
+{"error":"dxc_internal","reason":"Undefined function"}

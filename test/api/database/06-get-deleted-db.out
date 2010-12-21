@@ -1,1 +1,7 @@
+< HTTP/1.1 404 Not Found
+< Cache-Control: must-revalidate
+< Content-type: text/plain; charset=UTF-8
+< Server: MarkLogic
+< Content-Length: 57
+< Connection: close
 {"error":"not_found","reason":"Database does not exist."}

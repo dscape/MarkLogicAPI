@@ -1,1 +1,7 @@
+< HTTP/1.1 400 Bad Request
+< Cache-Control: must-revalidate
+< Content-type: text/plain; charset=UTF-8
+< Server: MarkLogic
+< Content-Length: 165
+< Connection: close
 {"error":"illegal_database_name","reason":"Only lowercase characters (a-z), digits (0-9), and any of the characters _, and - are allowed. Must begin with a letter."}
