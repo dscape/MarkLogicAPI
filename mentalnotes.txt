@@ -5,3 +5,4 @@ add all data types
 errors only support xml or html, must be improved further on
   need error handler as advanced as routing
 tests need to be better than that - that just works...
+add try catch to ruby client when opening out file. if doesnt exist then test failed

@@ -2,6 +2,8 @@
 require 'optparse'
 require 'rubygems'
 
+PWD = Dir.pwd
+
 class Tests
   def self.run options
     orig_stdout = $stdout
@@ -30,24 +32,19 @@ class Tests
 
   def self.run_test file, directory, depth
     log_file = 
-      File.join directory, "../" * (depth-1), "logs", file.gsub(".sh", ".log")
-
+      File.join directory, "../" * (depth-1), "logs", file.gsub(".sh", "#{directory.gsub(PWD, '').gsub('/','.')}.log")
     file = File.join(directory, file)
     out_file = file.gsub ".sh", ".out"
     aux_file = file.gsub ".sh", ".aux"
-
     output = `#{file} #{@options[:db]}`
     expected_output = File.open(out_file).readlines.join
-
     if output == expected_output
       print " [\e[32mOK\e[0m]" 
     else
       print " [\e[31mFAILED\e[0m]" 
-
       File.open(aux_file, 'w') { |file| file.write output }
       diff = `diff #{aux_file} #{out_file}`
       File.delete aux_file
-
       File.open(log_file, 'w') { |file| file.write diff }
     end
     puts
@@ -55,7 +52,7 @@ class Tests
 
   def self.puts_idented_file depth, file, symbol
     depth.times { print "  " }
-    print "#{symbol} #{file}"
+    print "#{symbol} #{file.gsub(PWD,'')}"
     puts if symbol == '.'
   end
 end
@@ -71,15 +68,15 @@ OptionParser.new do |opts|
           "The directory you want to scan test files.") do |dir|
             options[:dir] = dir
           end
-  opts.on("-t",
-          "--to FILENAME",
+  opts.on("-o",
+          "--output FILENAME",
           String,
           "The desired filename for the output file.") do |to|
             options[:filename] = to
           end
 end.parse!
 
-options[:dir] = File.join(Dir.pwd, 'suite') unless options[:dir]
+options[:dir] = File.join(PWD, 'api') unless options[:dir]
 options[:db] = ARGV[0]
 
 Tests.run(options)
