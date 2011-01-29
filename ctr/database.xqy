@@ -11,7 +11,7 @@ declare function local:get()    {
   let $db := mvc:get-input( 'database' )
   return ( mvc:must-revalidate-cache(),
     if ( db:exists ( $db ) )
-    then "info"
+    then mvc:render( 'database', 'get', db:info( $db ) )
     else mvc:raise-error( 'Database does not exist.', 404, 'Not Found', 'not_found' ) ) } ;
 
 declare function local:put()    {

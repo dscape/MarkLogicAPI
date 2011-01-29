@@ -9,7 +9,6 @@ import module
   namespace info="http://marklogic.com/appservices/infostudio" 
   at "/MarkLogic/appservices/infostudio/info.xqy";
 
-
 declare function db:list() {
   xdmp:database-name( xdmp:databases() ) } ;
 
@@ -21,3 +20,8 @@ declare function db:valid-name( $name ) {
 
 declare function db:create( $name ) { info:database-create( $name ) } ;
 declare function db:delete( $name ) { info:database-delete( $name ) } ;
+declare function db:info( $name ) { 
+  <db-info>
+    <db_name> { $name } </db_name>
+    { info:database-get-feature( $name ) }
+  </db-info> } ;

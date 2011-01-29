@@ -5,4 +5,10 @@ add all data types
 errors only support xml or html, must be improved further on
   need error handler as advanced as routing
 add try catch to ruby client when opening out file. if doesnt exist then test failed
+real problem with lack of closure, like in database its impossible to call any method and
+define alternate behavior. code ends up with lots of duplicated conditions
 
+add all (app servers, roles, users, groups, hosts)
+create a deployment script (readmes suck, ruby because its platform independent and already used
+  in tests)
+implements info studio flows - ability to start stop etc. resides in info.xqy just like db
