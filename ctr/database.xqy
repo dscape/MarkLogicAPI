@@ -29,8 +29,6 @@ declare function local:put()    {
            else mvc:raise-error( 'Only lowercase characters (a-z), digits (0-9), and any of the characters _, and - are allowed. Must begin with a letter.',
              400, 'Bad Request', 'illegal_database_name') ) } ;
 
-declare function local:post()   { 1 } ;
-
 declare function local:delete() { 
   let $db := mvc:get-input( 'database' )
   return ( mvc:must-revalidate-cache(),
