@@ -11,18 +11,22 @@ import module
 
 declare namespace adm = "http://marklogic.com/xdmp/database" ;
 
+declare variable $databases := xdmp:read-cluster-config-file("databases.xml");
+
 declare function db:list() {
   xdmp:database-name( xdmp:databases() ) } ;
 
-declare function db:exists ( $name ){
-  db:list() [ . = $name ] } ;
+declare function db:exists ( $database ){
+  db:list() [ . = $database ] } ;
 
-declare function db:valid-name( $name ) { 
-  fn:matches( $name, '^[a-z]([a-z]|[0-9]|_|-)*$' ) } ;
+declare function db:valid-name( $database ) { 
+  fn:matches( $datanase, '^[a-z]([a-z]|[0-9]|_|-)*$' ) } ;
 
-declare function db:create( $name ) { info:database-create( $name ) } ;
-declare function db:delete( $name ) { info:database-delete( $name ) } ;
-declare function db:info( $name ) { 
-  xdmp:read-cluster-config-file("databases.xml")
-         /adm:databases/adm:database [adm:database-name = $name] } ;
+declare function db:forests ( $database ){
+  'not yet' };
+
+declare function db:create( $database ) { info:database-create( $database ) } ;
+declare function db:delete( $database ) { info:database-delete( $database ) } ;
+declare function db:status( $database ) { 
+  $databases /adm:databases/adm:database [adm:database-name = $database] } ;
 

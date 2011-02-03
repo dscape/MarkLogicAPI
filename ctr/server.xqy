@@ -9,6 +9,9 @@ import module
 import module
   namespace db = "model:database"
   at "../mdl/database.xqy" ;
+import module
+  namespace fr = "model:forest"
+  at "../mdl/forest.xqy" ;
 
 declare function local:version() {
   mvc:must-revalidate-cache(),
@@ -26,7 +29,7 @@ declare function local:all_dbs() {
 
 declare function local:all_forests() {
   mvc:must-revalidate-cache(),
-  mvc:render( 'server', 'all_forests', server:forests() ) } ;
+  mvc:render( 'server', 'all_forests', fr:list() ) } ;
 
 try          { xdmp:apply( mvc:function() ) } 
 catch ( $e ) { mvc:raise-error-from-exception( $e ) }

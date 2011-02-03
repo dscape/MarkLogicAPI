@@ -8,5 +8,3 @@ declare function server:uuids( $count ) {
   return fn:substring( xdmp:md5( fn:concat( fn:string( fn:current-date() ), 
     fn:string($c), fn:string( xdmp:request() ) ) ), 1, 32 ) };
 
-declare function server:forests() {
-  for $id in xdmp:forests() return xdmp:forest-name( $id ) } ;
