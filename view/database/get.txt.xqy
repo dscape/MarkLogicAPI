@@ -11,4 +11,4 @@ declare function local:main() {
   "instance_start_time":"1294978007496463",
   "disk_format_version":5,
   "committed_update_seq":0, 
-  "marklogic_specific": $2 }', $args[1]//*:database-name), $args[2] } ;
+  "marklogic_specific": $2 }', ($args[1]//*:database-name, $args[2])) } ;

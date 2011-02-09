@@ -1,1 +1,1 @@
-declare function local:main() { $args } ;
+declare function local:main() { $args[1] } ;
