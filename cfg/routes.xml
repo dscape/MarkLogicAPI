@@ -4,6 +4,11 @@
   <match path="/_uuids"> <to> server#uuids </to> </match>
   <match path="/_all_dbs"> <to> server#all_dbs </to> </match>
   <match path="/_all_forests"> <to> server#all_forests </to> </match>
+  <match path="/_cluster/_assignments"> <to> cluster#assignments </to> </match>
+  <match path="/_cluster/_databases"> <to> cluster#databases </to> </match>
+  <match path="/_cluster/_groups"> <to> cluster#groups </to> </match>
+  <match path="/_cluster/_hosts"> <to> cluster#hosts </to> </match>
+  <match path="/_cluster/_server"> <to> cluster#server </to> </match>
   <match path="/_download">
     <redirect-to> http://developer.marklogic.com/products </redirect-to>
   </match>

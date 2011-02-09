@@ -9,7 +9,7 @@ declare variable $assignments := xdmp:read-cluster-config-file("assignments.xml"
 declare variable $hosts       := xdmp:read-cluster-config-file("hosts.xml") ;
 
 declare function fr:list() {
-  xdmp:forest-name( xdmp:forest() ) } ;
+  xdmp:forest-name( xdmp:forests() ) } ;
 
 declare function fr:exists ( $forest ){
   fr:list() [ . = $forest ] } ;
