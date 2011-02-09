@@ -20,7 +20,7 @@ declare function db:exists ( $database ){
   db:list() [ . = $database ] } ;
 
 declare function db:valid-name( $database ) { 
-  fn:matches( $datanase, '^[a-z]([a-z]|[0-9]|_|-)*$' ) } ;
+  fn:matches( $database, '^[a-z]([a-z]|[0-9]|_|-)*$' ) } ;
 
 declare function db:forests ( $database ){
   'not yet' };
