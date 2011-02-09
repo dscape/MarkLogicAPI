@@ -3,6 +3,9 @@ xquery version "1.0-ml";
 module namespace db = "model:database";
 
 import module
+  namespace json = "http://ns.dscape.org/2010/dxc/json"
+  at "/lib/dxc/json/json.xqy";
+import module
   namespace mvc = "http://ns.dscape.org/2010/dxc/mvc"
   at "/lib/dxc/mvc/mvc.xqy";
 import module 
@@ -28,5 +31,6 @@ declare function db:forests ( $database ){
 declare function db:create( $database ) { info:database-create( $database ) } ;
 declare function db:delete( $database ) { info:database-delete( $database ) } ;
 declare function db:status( $database ) { 
-  $databases /adm:databases/adm:database [adm:database-name = $database] } ;
+  let $db := $databases /adm:databases/adm:database [adm:database-name = $database]
+  return ( $db, json:serialize($db) ) } ;
 
