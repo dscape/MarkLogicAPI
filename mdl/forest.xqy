@@ -2,11 +2,13 @@ xquery version "1.0-ml";
 
 module namespace fr = "model:forest";
 
-declare namespace h = "http://marklogic.com/xdmp/hosts" ;
-declare namespace a = "http://marklogic.com/xdmp/assignments" ;
 
-declare variable $assignments := xdmp:read-cluster-config-file("assignments.xml") ;
-declare variable $hosts       := xdmp:read-cluster-config-file("hosts.xml") ;
+import module
+  namespace x = "http://ns.dscape.org/2010/dxc/xml"
+  at "/lib/dxc/xml/xml.xqy";
+
+declare variable $assignments := x:strip-namespaces( xdmp:read-cluster-config-file("assignments.xml")/* );
+declare variable $hosts       := x:strip-namespaces( xdmp:read-cluster-config-file("hosts.xml")/* );
 
 declare function fr:list() {
   xdmp:forest-name( xdmp:forests() ) } ;
@@ -18,11 +20,13 @@ declare function fr:valid-name( $forest ) {
   fn:matches( $forest, '^[a-z]([a-z]|[0-9]|_|-)*$' ) } ;
 
 declare function fr:host( $forest ) {
-  $hosts /h:hosts /h:host
-      [ h:host-id = 
-        $assignments /a:assignments/a:assignment [a:forest-name=$forest] /a:host ]
-      /h:host-name/fn:string() } ; 
+  $hosts /host
+      [ host-id = 
+        $assignments /assignment [forest-name=$forest] /host ]
+      /host-name/fn:string() } ; 
 
 declare function fr:status( $forest ) {
-  xdmp:forest-status(
-    $assignments /a:assignments/a:assignment [a:forest-name=$forest] /a:forest-id ) };
+  let $id     := xdmp:forest($forest)
+  let $status := x:strip-namespaces(<forest> { xdmp:forest-status($id), xdmp:forest-counts($id, ("*")) } </forest>)
+  return $status
+};
